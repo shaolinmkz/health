@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+
+*,
+*::after,
+*::before,
+*:disabled {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  background: none;
+  color: unset;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --primary: #1ab2ff;
+  --red: #c12300;
+  --orange: #f3a426;
+  --green: #2dcb70;
+  --blue: var(--primary);
+  --green: #2dcb70;
+  --dark-grey: #7a7e86;
+  --light-grey: #caccd0;
+  --text: #656b73;
+  --fs36: 36px;
+  --fs18: 18px;
+  --fs16: 16px;
+  --fs14: 14px;
+  --fs12: 12px;
+  --fs10: 10px;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f7f7f7;
+  color: var(--text);
+}
+
+html {
+  font-size: var(--fs14);
+}
+
+h1 {
+  font-size: var(--fs36);
+}
+
+h2 {
+  font-size: var(--fs18);
+}
+
+h3 {
+  font-size: var(--fs16);
+}
+
+h4 {
+  font-size: var(--fs14);
+}
+
+h5 {
+  font-size: var(--fs12);
+}
+
+h6 {
+  font-size: var(--fs10);
+}
+
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

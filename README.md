@@ -2,17 +2,17 @@
 # Health
 A Demo Health Center Dashboard
 
-### Deployed
+## Deployed
 
 [Dashboard](https://healthc.netlify.app/)
 
-### Installation
+## Installation
 - Clone the repo `git clone <repo_url>`
 - cd into it `cd health`
 - run `npm install` to install all dependencies
 - run `npm run dev` to start the development server
 
-### Assumptions
+## Assumptions
 
 The DEMO_EVENTS data structure doesn't explicitly describe a specific event so I assumed somethings.
 I assumed the first three objects represented the `total blood sugar event`, `Average blood sugar events` and the `Events between 70 and 180` for each day due to the date pattern.

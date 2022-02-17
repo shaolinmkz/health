@@ -1,109 +1,45 @@
-*Psst — looking for a more complete solution? Check out [SvelteKit](https://kit.svelte.dev), the official framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.*
+# Health
+A Demo Health Center Dashboard
 
-*Looking for a shareable component template instead? You can [use SvelteKit for that as well](https://kit.svelte.dev/docs#packaging) or the older [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Installation
+- Clone the repo `git clone <repo_url>`
+- cd into it `cd health`
+- run `npm install` to install all dependencies
+- run `npm run dev` to start the development server
 
----
+# Assumptions
 
-# svelte app
+The DEMO_EVENTS data structure doesn't explicitly describe a specific event so I assumed somethings.
+I assumed the first three objects represented the `total blood sugar event`, `Average blood sugar events` and the `Events between 70 and 180` for each day due to the date pattern.
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+- Noticed the data was grouped the data by their time
+- Also noticed the 3rd record value for each batch fell with the `70-180` range.
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+And this pattern was used for the next 3 object consecutively.
 
 ```js
-"start": "sirv public --single"
-```
+  const DEMO_EVENTS = [
+      // total blood sugar events (today)
+      { value: 100, time: moment() },
+      // Average blood sugar events (today)
+      { value: 155, time: moment() },
+      // Events between 70 and 180 (today)
+      { value: 83, time: moment() },
 
-## Using TypeScript
+      // total blood sugar events (previous day)
+      { value: 211, time: moment().subtract(1, "day") },
+      // Average blood sugar events (previous day)
+      { value: 138, time: moment().subtract(1, "day") },
+      // Events between 70 and 180 (previous day)
+      { value: 55, time: moment().subtract(1, "day") },
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+      // total blood sugar events (2 days ago)
+      { value: 183, time: moment().subtract(2, "day") },
+      // Average blood sugar events (2 days ago)
+      { value: 103, time: moment().subtract(2, "day") },
+      // Events between 70 and 180 (2 days ago)
+      { value: 98, time: moment().subtract(3, "day") },
+  ];
 
-```bash
-node scripts/setupTypeScript.js
-```
+````
 
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
